@@ -3,10 +3,10 @@ env: flex
 
 env_variables:
   # --REQUIRED--
-  DATABASE_URI: mongodb://heroku_9w13rpc8:30keibbjjdp6qf0cktl3pjulk6@ds253094.mlab.com:53094/heroku_9w13rpc8
-  APP_ID: <federico-hichapp>
-  MASTER_KEY: <CodepathMoveFastParse>
-  SERVER_URL: https://federico-hitchapp.herokuapp.com/parse
+  DATABASE_URI: mongodb://localhost:27017/dev
+  APP_ID: <your-app-id>
+  MASTER_KEY: <your-master-key>
+  SERVER_URL: https://your-project-id.appspot.com/parse
   # --OPTIONAL--
   # FILE_KEY: <your-file-key>
   # PARSE_MOUNT: /parse

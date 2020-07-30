@@ -11,15 +11,15 @@
     },
     "APP_ID": {
       "description": "A unique identifier for your app.",
-      "value": "federico-hitchapp"
+      "value": "myAppId"
     },
     "MASTER_KEY": {
       "description": "A key that overrides all permissions. Keep this secret.",
-      "value": "CodepathMoveFastParse"
+      "value": "myMasterKey"
     },
     "SERVER_URL": {
       "description": "URL to connect to your Heroku instance (update with your app's name + PARSE_MOUNT)",
-      "value": "mongodb://heroku_9w13rpc8:30keibbjjdp6qf0cktl3pjulk6@ds253094.mlab.com:53094/heroku_9w13rpc8"
+      "value": "http://yourappname.herokuapp.com/parse"
     }
   },
   "image": "heroku/nodejs",
