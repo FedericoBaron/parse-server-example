@@ -7,6 +7,8 @@ var path = require('path');
 
 var databaseUri = "mongodb://heroku_9w13rpc8:30keibbjjdp6qf0cktl3pjulk6@ds253094.mlab.com:53094/heroku_9w13rpc8";
 
+var pushConfig = {};
+
 if (process.env.FCM_API_KEY) {
     pushConfig['android'] = { apiKey: process.env.FCM_API_KEY || ''};
 }
