@@ -7,11 +7,16 @@ var path = require('path');
 
 var databaseUri = "mongodb://heroku_9w13rpc8:30keibbjjdp6qf0cktl3pjulk6@ds253094.mlab.com:53094/heroku_9w13rpc8";
 
+if (process.env.FCM_API_KEY) {
+    pushConfig['android'] = { apiKey: process.env.FCM_API_KEY || ''};
+}
+
 var api = new ParseServer({
   databaseURI: databaseUri || 'mongodb://localhost:27017/dev',
   cloud: process.env.CLOUD_CODE_MAIN || __dirname + '/cloud/main.js',
   appId: process.env.APP_ID || 'federico-hitchapp',
   masterKey: process.env.MASTER_KEY || 'CodepathMoveFastParse', //Add your master key here. Keep it secret!
+  push: pushConfig,
   serverURL: process.env.SERVER_URL || 'https://federico-hitchapp.herokuapp.com/parse',  // Don't forget to change to https if needed
   liveQuery: {
     classNames: ["Message", "Ride"] // List of classes to support for query subscriptions
