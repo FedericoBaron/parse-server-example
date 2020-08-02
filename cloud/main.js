@@ -45,20 +45,31 @@ Parse.Cloud.define("sendPushNotification", function(request, response) {
 
         Parse.Push.send({
           where: query,
-          data: {
-            alert: "message",
-            badge: 0,
-            sound: 'default'
-          }
-        }, {
-          success: function() {
-            console.log('##### PUSH OK');
-            response.success();
-          },
-          error: function(error) {
-            console.log('##### PUSH ERROR');
-            response.error('ERROR');
-          },
-          useMasterKey: true
-        });
+          // Parse.Push requires a dictionary, not a string.
+          data: {"alert": "WE SCORED!"},
+          }, { success: function() {
+          console.log("#### PUSH OK");
+          }, error: function(error) {
+          console.log("#### PUSH ERROR" + error.message);
+          }, useMasterKey: true});
+
+  response.success('success');
+        // Parse.Push.send({
+        //   where: query,
+        //   data: {
+        //     alert: "message",
+        //     badge: 0,
+        //     sound: 'default'
+        //   }
+        // }, {
+        //   success: function() {
+        //     console.log('##### PUSH OK');
+        //     response.success();
+        //   },
+        //   error: function(error) {
+        //     console.log('##### PUSH ERROR');
+        //     response.error('ERROR');
+        //   },
+        //   useMasterKey: true
+        // });
 });
