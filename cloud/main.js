@@ -32,8 +32,9 @@ Parse.Cloud.define('pingReply', function(request, response) {
 Parse.Cloud.define("sendPushNotification", function(request, response) {
         // var userId = request.params.userId;
         // var message = request.params.message;
-        // var queryUser = new Parse.Query(Parse.User);
+
         var userId = JSON.parse(customData).userId;
+        var queryUser = new Parse.Query(Parse.User);
         queryUser.equalTo('objectId', userId);
         var query = new Parse.Query(Parse.Installation);
         query.matchesQuery('user', queryUser);
