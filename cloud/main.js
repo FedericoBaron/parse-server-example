@@ -31,13 +31,14 @@ Parse.Cloud.define('pingReply', function(request, response) {
 
 Parse.Cloud.define("sendPushNotification", function(request, response) {
         var params = request.params;
-        var customData = params.customData;
+        // var customData = params.customData;
 
-        if (!customData) {
-          response.error("Missing customData!")
-        }
+        // if (!customData) {
+        //   response.error("Missing customData!")
+        // }
 
-        var userId = JSON.parse(customData).userId;
+        //var userId = JSON.parse(customData).userId;
+        var userId = params.userId
         var queryUser = new Parse.Query(Parse.User);
         queryUser.equalTo('objectId', userId);
         var query = new Parse.Query(Parse.Installation);
