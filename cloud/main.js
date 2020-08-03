@@ -31,7 +31,7 @@ Parse.Cloud.define('pingReply', function(request, response) {
 
 Parse.Cloud.define("sendPushNotification", function(request, response) {
         var query = new Parse.Query(Parse.User);
-        query.equalTo(objectId, request.params.objectId);
+        query.equalTo("objectId", request.params.objectId);
         // Find devices associated with these users
         var pushQuery = new Parse.Query(Parse.Installation);
         // need to have users linked to installations
