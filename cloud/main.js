@@ -87,7 +87,7 @@ Parse.Cloud.define("sendPushNotificationChannel", function(request, response) {
           where: pushQuery,
           // Parse.Push requires a dictionary, not a string.
           data: {
-            "title": "You received a new message"
+            "title": "You received a new message",
             "alert": message},
           }, { success: function() {
           console.log("#### PUSH OK");
