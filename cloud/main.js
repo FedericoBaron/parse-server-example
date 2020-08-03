@@ -64,7 +64,7 @@ Parse.Cloud.define("sendPushNotificationAccepted", function(request, response) {
   Parse.Push.send({
     where: pushQuery,
     // Parse.Push requires a dictionary, not a string.
-    data: {"alert": "You're in! " + username + " accepted your request"},
+    data: {"alert": "You're in! Your request was accepted"},
     }, { success: function() {
     console.log("#### PUSH OK");
     }, error: function(error) {
