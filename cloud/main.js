@@ -78,6 +78,7 @@ Parse.Cloud.define("sendPushNotification", function(request, response) {
 Parse.Cloud.define("sendPushNotificationChannel", function(request, response) {
         var params = request.params;
         var channel = params.channel;
+        var pushQuery = new Parse.Query(Parse.Installation);
         pushQuery.equalTo("deviceType", "android");
         pushQuery.equalTo('channels', channel);
 
