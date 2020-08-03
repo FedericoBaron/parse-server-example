@@ -30,13 +30,20 @@ Parse.Cloud.define('pingReply', function(request, response) {
 
 
 Parse.Cloud.define("sendPushNotification", function(request, response) {
-        var params = request.params;
-        var query = new Parse.Query(Parse.Installation);
-        let objectId = request.params.objectId;
-        query.equalTo('objectId', objectId);
+        var query = new Parse.Query(Parse.User);
+        query.equalTo(objectId, request.params.objectId);
+        // Find devices associated with these users
+        var pushQuery = new Parse.Query(Parse.Installation);
+        // need to have users linked to installations
+        pushQuery.matchesQuery('user', query);
+
+        // var params = request.params;
+        // var query = new Parse.Query(Parse.Installation);
+        // let objectId = request.params.objectId;
+        // query.equalTo('objectId', objectId);
 
         Parse.Push.send({
-          where: query,
+          where: pushQuery,
           // Parse.Push requires a dictionary, not a string.
           data: {"alert": "You got a new request"},
           }, { success: function() {
