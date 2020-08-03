@@ -74,3 +74,22 @@ Parse.Cloud.define("sendPushNotification", function(request, response) {
         //   useMasterKey: true
         // });
 });
+
+Parse.Cloud.define("sendPushNotificationChannel", function(request, response) {
+        var params = request.params;
+        var channel = params.channel;
+        pushQuery.equalTo("deviceType", "android");
+        pushQuery.equalTo('channels', channel);
+
+        Parse.Push.send({
+          where: pushQuery,
+          // Parse.Push requires a dictionary, not a string.
+          data: {"alert": "WE SCORED!"},
+          }, { success: function() {
+          console.log("#### PUSH OK");
+          }, error: function(error) {
+          console.log("#### PUSH ERROR" + error.message);
+          }, useMasterKey: true});
+
+  response.success('success');
+});
