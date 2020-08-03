@@ -37,11 +37,6 @@ Parse.Cloud.define("sendPushNotification", function(request, response) {
         // need to have users linked to installations
         pushQuery.matchesQuery('user', query);
 
-        // var params = request.params;
-        // var query = new Parse.Query(Parse.Installation);
-        // let objectId = request.params.objectId;
-        // query.equalTo('objectId', objectId);
-
         Parse.Push.send({
           where: pushQuery,
           // Parse.Push requires a dictionary, not a string.
@@ -54,6 +49,31 @@ Parse.Cloud.define("sendPushNotification", function(request, response) {
 
   response.success('success');
 });
+
+Parse.Cloud.define("sendPushNotificationAccepted", function(request, response) {
+  var params = request.params;
+  var objectId = params.objectId;
+  var username = params.username;
+  var query = new Parse.Query(Parse.User);
+  query.equalTo("objectId", request.params.objectId);
+  // Find devices associated with these users
+  var pushQuery = new Parse.Query(Parse.Installation);
+  // need to have users linked to installations
+  pushQuery.matchesQuery('user', query);
+
+  Parse.Push.send({
+    where: pushQuery,
+    // Parse.Push requires a dictionary, not a string.
+    data: {"alert": username + " accepted your request"},
+    }, { success: function() {
+    console.log("#### PUSH OK");
+    }, error: function(error) {
+    console.log("#### PUSH ERROR" + error.message);
+    }, useMasterKey: true});
+
+  response.success('success');
+});
+
 
 Parse.Cloud.define("sendPushNotificationChannel", function(request, response) {
         var params = request.params;
