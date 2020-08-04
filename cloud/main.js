@@ -97,3 +97,25 @@ Parse.Cloud.define("sendPushNotificationChannel", function(request, response) {
 
   response.success('success');
 });
+
+Parse.Cloud.define("cancelRideNotification", function(request, response) {
+        var params = request.params;
+        var channel = params.channel;
+        var username = params.username
+        var pushQuery = new Parse.Query(Parse.Installation);
+        pushQuery.equalTo("deviceType", "android");
+        pushQuery.equalTo('channels', channel);
+
+        Parse.Push.send({
+          where: pushQuery,
+          // Parse.Push requires a dictionary, not a string.
+          data: {
+            "alert": username + " cancelled the ride"},
+          }, { success: function() {
+          console.log("#### PUSH OK");
+          }, error: function(error) {
+          console.log("#### PUSH ERROR" + error.message);
+          }, useMasterKey: true});
+
+  response.success('success');
+});
