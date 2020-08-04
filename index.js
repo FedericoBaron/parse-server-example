@@ -21,7 +21,7 @@ var api = new ParseServer({
   push: pushConfig,
   serverURL: process.env.SERVER_URL || 'https://federico-hitchapp.herokuapp.com/parse',  // Don't forget to change to https if needed
   liveQuery: {
-    classNames: ["Message", "Ride"] // List of classes to support for query subscriptions
+    classNames: ["Message", "Ride", "Request"] // List of classes to support for query subscriptions
   }
 });
 // Client-keys like the javascript key or the .NET key are not necessary with parse-server
